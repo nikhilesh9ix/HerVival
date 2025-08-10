@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerVival - Available Counselors</title>
+    <style>
+        :root {
+            --primary-color: #FF97B7;
+            --primary-light: #FFE5ED;
+            --primary-dark: #FF6B98;
+            --text-color: #4A4A4A;
+            --white: #FFFFFF;
+            --success-color: #D6FFE5;
+            --success-dark: #4CAF50;
+            --warning-color: #FFA726;
+            --warning-light: #FFF3E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #FFE5ED 0%, var(--white) 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: var(--white);
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+
+        .back-btn {
+            padding: 0.5rem 1rem;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background: var(--primary-dark);
+            color: var(--white);
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+        }
+
+        .counselors-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .counselors-header h1 {
+            color: var(--primary-dark);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .counselors-header p {
+            color: var(--text-color);
+            font-size: 1.1rem;
+        }
+
+        .counselors-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .counselors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .counselor-card {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .counselor-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .counselor-photo {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .counselor-info {
+            padding: 1.5rem;
+        }
+
+        .counselor-name {
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .counselor-specialization {
+            color: var(--text-color);
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+        }
+
+        .counselor-description {
+            color: var(--text-color);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+        }
+
+        .status-available {
+            background: var(--success-color);
+            color: var(--success-dark);
+        }
+
+        .status-later {
+            background: var(--warning-light);
+            color: var(--warning-color);
+        }
+
+        .availability-time {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .book-btn {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-align: center;
+        }
+
+        .book-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        @media (max-width: 768px) {
+            .counselors-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-container {
+                padding: 0 1rem;
+            }
+            
+            .counselors-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/" class="logo">HerVival</a>
+        <a href="/" class="back-btn">Back</a>
+    </header>
+
+    <main class="main-container">
+        <div class="counselors-header">
+            <h1>Available Counselors</h1>
+            <p>Find the right support for you</p>
+        </div>
+
+        <section class="counselors-section">
+            <h2 class="section-title">Online Now</h2>
+            <div class="counselors-grid">
+                <!-- Counselor Card 1 -->
+                <div class="counselor-card">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dr. Sarah Johnson" class="counselor-photo">
+                    <div class="counselor-info">
+                        <h3 class="counselor-name">Dr. Sarah Johnson</h3>
+                        <p class="counselor-specialization">Trauma Counselor</p>
+                        <p class="counselor-description">Specializes in trauma recovery, PTSD, and anxiety management with 10+ years of experience.</p>
+                        <span class="status-badge status-available">Available</span>
+                        <p class="availability-time">Next Available: 2:30 PM</p>
+                        <button class="book-btn">Book Session</button>
+                    </div>
+                </div>
+
+                <!-- Counselor Card 2 -->
+                <div class="counselor-card">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Dr. Maya Patel" class="counselor-photo">
+                    <div class="counselor-info">
+                        <h3 class="counselor-name">Dr. Aesha Patel</h3>
+                        <p class="counselor-specialization">Anxiety Specialist</p>
+                        <p class="counselor-description">Focuses on anxiety disorders, stress management, and mindfulness techniques.</p>
+                        <span class="status-badge status-available">Available</span>
+                        <p class="availability-time">Next Available: 3:00 PM</p>
+                        <button class="book-btn">Book Session</button>
+                    </div>
+                </div>
+
+                <!-- Counselor Card 3 -->
+                <div class="counselor-card">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Jennifer Williams" class="counselor-photo">
+                    <div class="counselor-info">
+                        <h3 class="counselor-name">Jennifer Williams</h3>
+                        <p class="counselor-specialization">Relationship Counselor</p>
+                        <p class="counselor-description">Expert in relationship issues, communication skills, and building healthy boundaries.</p>
+                        <span class="status-badge status-available">Available</span>
+                        <p class="availability-time">Next Available: 4:15 PM</p>
+                        <button class="book-btn">Book Session</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="counselors-section">
+            <h2 class="section-title">Available Later Today</h2>
+            <div class="counselors-grid">
+                <!-- Counselor Card 4 -->
+                <div class="counselor-card">
+                    <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Dr. Rebecca Chen" class="counselor-photo">
+                    <div class="counselor-info">
+                        <h3 class="counselor-name">Dr. Rebecca Chen</h3>
+                        <p class="counselor-specialization">Depression Specialist</p>
+                        <p class="counselor-description">Specializes in depression, mood disorders, and cognitive behavioral therapy approaches.</p>
+                        <span class="status-badge status-later">Later Today</span>
+                        <p class="availability-time">Available At: 5:30 PM</p>
+                        <button class="book-btn">Book Session</button>
+                    </div>
+                </div>
+
+                <!-- Counselor Card 5 -->
+                <div class="counselor-card">
+                    <img src="https://randomuser.me/api/portraits/women/17.jpg" alt="Dr. Lisa Rodriguez" class="counselor-photo">
+                    <div class="counselor-info">
+                        <h3 class="counselor-name">Dr. Lisa Rodriguez</h3>
+                        <p class="counselor-specialization">Grief Counselor</p>
+                        <p class="counselor-description">Experienced in helping clients navigate grief, loss, and major life transitions.</p>
+                        <span class="status-badge status-later">Later Today</span>
+                        <p class="availability-time">Available At: 6:00 PM</p>
+                        <button class="book-btn">Book Session</button>
+                    </div>
+                </div>
+
+                <!-- Counselor Card 6 -->
+                <div class="counselor-card">
+                    <img src="https://randomuser.me/api/portraits/women/90.jpg" alt="Emma Thompson" class="counselor-photo">
+                    <div class="counselor-info">
+                        <h3 class="counselor-name">Emma Thompson</h3>
+                        <p class="counselor-specialization">Self-Esteem Coach</p>
+                        <p class="counselor-description">Focuses on building self-esteem, confidence, and personal growth strategies.</p>
+                        <span class="status-badge status-later">Later Today</span>
+                        <p class="availability-time">Available At: 7:15 PM</p>
+                        <button class="book-btn">Book Session</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Add event listeners for the Book Session buttons
+        document.querySelectorAll('.book-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const counselorName = this.closest('.counselor-info').querySelector('.counselor-name').textContent;
+                const availabilityTime = this.closest('.counselor-info').querySelector('.availability-time').textContent;
+                alert(`Booking session with ${counselorName} at ${availabilityTime.split(': ')[1]}`);
+                // In a real app, this would redirect to a booking page or open a modal
+            });
+        });
+
+        // Back button functionality
+        document.querySelector('.back-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = '/';
+        });
+    </script>
+</body>
+</html>

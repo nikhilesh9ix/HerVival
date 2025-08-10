@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - HerVival</title>
+    <style>
+        :root {
+            --primary-light: #FFE6E6;
+            --primary: #FFB6C1;
+            --primary-dark: #FF69B4;
+            --text-color: #4A4A4A;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .error-container {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .error-icon {
+            font-size: 4rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            color: var(--primary-dark);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-dark);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .button:hover {
+            background: #FF1493;
+        }
+
+        @media (max-width: 480px) {
+            .error-container {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">🫂</div>
+        <h1>Page Not Found</h1>
+        <p>
+            I apologize for any confusion. It seems we've wandered to a page that doesn't exist. 
+            Don't worry though - I'm still here to support you. Let's head back to our safe space 
+            where we can continue our conversation.
+        </p>
+        <a href="/" class="button">Return to Safe Space</a>
+    </div>
+</body>
+</html>

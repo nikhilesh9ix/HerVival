@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerVival - Welcome</title>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+      import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+      import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDTUMewKAz_tyT6L2Wap1isRAzhK1p61EM",
+        authDomain: "hervival-d40e1.firebaseapp.com",
+        projectId: "hervival-d40e1",
+        storageBucket: "hervival-d40e1.firebasestorage.app",
+        messagingSenderId: "943996741664",
+        appId: "1:943996741664:web:93134525196a42c4c17445",
+        measurementId: "G-R1EW8YG0PM"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const auth = getAuth(app);
+
+      // Make auth functions globally available
+      window.auth = auth;
+      window.createUser = createUserWithEmailAndPassword;
+      window.signIn = signInWithEmailAndPassword;
+      window.resetPassword = sendPasswordResetEmail;
+      window.authStateChanged = onAuthStateChanged;
+    </script>
+    <style>
+        :root {
+            --primary-light: #FFE6E6;
+            --primary: #FFB6C1;
+            --primary-dark: #FF69B4;
+            --text-color: #4A4A4A;
+            --white: #FFFFFF;
+            --error: #FF6B6B;
+            --success: #4CAF50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+        }
+
+        .auth-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .auth-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo img {
+            width: 80px;
+            height: 80px;
+        }
+
+        h1 {
+            color: var(--primary-dark);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-color);
+            opacity: 0.5;
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 2.5rem;
+            border: 2px solid var(--primary-light);
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-dark);
+            color: var(--white);
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #FF1493;
+        }
+
+        .link {
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .link:hover {
+            color: #FF1493;
+        }
+
+        .divider {
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-color);
+            opacity: 0.5;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid currentColor;
+        }
+
+        .divider span {
+            margin: 0 10px;
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .success-message {
+            color: var(--success);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* Screen transitions */
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .auth-card {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div class="screen active" id="welcome-screen">
+            <div class="auth-card">
+                <div class="logo">
+                    <img src="/static/images/logo.png" alt="HerVival Logo">
+                </div>
+                <h1>Welcome to HerVival</h1>
+                <p class="subtitle">Your safe space for emotional support and healing</p>
+                <button onclick="showScreen('signin-screen')">Sign In</button>
+                <div class="divider"><span>or</span></div>
+                <button onclick="showScreen('signup-screen')" style="background: var(--white); color: var(--primary-dark); border: 2px solid var(--primary-dark);">Create Account</button>
+            </div>
+        </div>
+
+        <!-- Sign In Screen -->
+        <div class="screen" id="signin-screen">
+            <div class="auth-card">
+                <h1>Welcome Back</h1>
+                <p class="subtitle">Sign in to continue your journey</p>
+                <form id="signin-form" onsubmit="handleSignIn(event)">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <i>📧</i>
+                            <input type="email" id="signin-email" placeholder="Email" required>
+                        </div>
+                        <div class="input-group">
+                            <i>🔒</i>
+                            <input type="password" id="signin-password" placeholder="Password" required>
+                        </div>
+                        <a href="#" class="link" onclick="showScreen('forgot-password-screen')">Forgot Password?</a>
+                    </div>
+                    <button type="submit">Sign In</button>
+                    <div class="error-message" id="signin-error"></div>
+                </form>
+                <div class="divider"><span>or</span></div>
+                <p>Don't have an account? <a href="#" class="link" onclick="showScreen('signup-screen')">Sign Up</a></p>
+            </div>
+        </div>
+
+        <!-- Sign Up Screen -->
+        <div class="screen" id="signup-screen">
+            <div class="auth-card">
+                <h1>Create Account</h1>
+                <p class="subtitle">Join our supportive community</p>
+                <form id="signup-form" onsubmit="handleSignUp(event)">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <i>👤</i>
+                            <input type="text" id="signup-email" placeholder="Username" required>
+                        </div>
+                        <div class="input-group">
+                            <i>🔒</i>
+                            <input type="password" id="signup-password" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <button type="submit">Create Account</button>
+                    <div class="error-message" id="signup-error"></div>
+                </form>
+                <div class="divider"><span>or</span></div>
+                <p>Already have an account? <a href="#" class="link" onclick="showScreen('signin-screen')">Sign In</a></p>
+            </div>
+        </div>
+
+        <!-- Forgot Password Screen -->
+        <div class="screen" id="forgot-password-screen">
+            <div class="auth-card">
+                <h1>Reset Password</h1>
+                <p class="subtitle">We'll send you a reset link</p>
+                <form id="reset-form" onsubmit="handlePasswordReset(event)">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <i>📧</i>
+                            <input type="email" id="reset-email" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <button type="submit">Send Reset Link</button>
+                    <div class="error-message" id="reset-error"></div>
+                    <div class="success-message" id="reset-success"></div>
+                </form>
+                <div class="divider"></div>
+                <p><a href="#" class="link" onclick="showScreen('signin-screen')">Back to Sign In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Screen management
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        // Form handling
+        async function handleSignIn(e) {
+            e.preventDefault();
+            const email = document.getElementById('signin-email').value;
+            const password = document.getElementById('signin-password').value;
+            const errorElement = document.getElementById('signin-error');
+
+            try {
+                await window.signIn(window.auth, email, password);
+                window.location.href = 'index.html';
+            } catch (error) {
+                errorElement.style.display = 'block';
+                errorElement.textContent = error.message;
+            }
+        }
+
+        async function handleSignUp(e) {
+            e.preventDefault();
+            const username = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const errorElement = document.getElementById('signup-error');
+
+            try {
+                const userCredential = await window.createUser(window.auth, username, password);
+                window.location.href = 'index.html';
+            } catch (error) {
+                errorElement.style.display = 'block';
+                errorElement.textContent = error.message;
+            }
+        }
+
+        async function handlePasswordReset(e) {
+            e.preventDefault();
+            const email = document.getElementById('reset-email').value;
+            const errorElement = document.getElementById('reset-error');
+            const successElement = document.getElementById('reset-success');
+
+            try {
+                await window.resetPassword(window.auth, email);
+                errorElement.style.display = 'none';
+                successElement.style.display = 'block';
+                successElement.textContent = 'Password reset email sent! Check your inbox.';
+            } catch (error) {
+                successElement.style.display = 'none';
+                errorElement.style.display = 'block';
+                errorElement.textContent = error.message;
+            }
+        }
+
+        // Auth state observer
+        window.authStateChanged(window.auth, user => {
+            if (user) {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>
