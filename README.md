@@ -81,9 +81,21 @@ HerVival is an emotion-aware AI chatbot designed to provide emotional support, c
    Create a `.env` file in the root directory:
 
    ```env
+   # Flask Configuration
    FLASK_SECRET_KEY=your-secret-key-here
    FLASK_ENV=development
+   
+   # Firebase Web App Configuration
+   FIREBASE_API_KEY=your-firebase-api-key
+   FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+   FIREBASE_PROJECT_ID=your-project-id
+   FIREBASE_STORAGE_BUCKET=your-project.firebasestorage.app
+   FIREBASE_MESSAGING_SENDER_ID=your-sender-id
+   FIREBASE_APP_ID=your-app-id
+   FIREBASE_MEASUREMENT_ID=your-measurement-id
    ```
+
+   **Note**: Replace the placeholder values with your actual Firebase configuration values.
 
 5. **Run the application**
 
@@ -145,6 +157,7 @@ Emo AI/
 - `/chat` - API endpoint for message processing
 - `/counselors` - Professional resources
 - `/services` - Emergency services
+- `/firebase-config` - Secure Firebase configuration endpoint
 - `/user/activity` - Activity tracking
 
 ## Configuration
@@ -153,6 +166,13 @@ Emo AI/
 
 - `FLASK_SECRET_KEY`: Secret key for session management
 - `FLASK_ENV`: Application environment (development/production)
+- `FIREBASE_API_KEY`: Firebase API key for web app
+- `FIREBASE_AUTH_DOMAIN`: Firebase authentication domain
+- `FIREBASE_PROJECT_ID`: Firebase project identifier
+- `FIREBASE_STORAGE_BUCKET`: Firebase storage bucket
+- `FIREBASE_MESSAGING_SENDER_ID`: Firebase messaging sender ID
+- `FIREBASE_APP_ID`: Firebase application ID
+- `FIREBASE_MEASUREMENT_ID`: Firebase analytics measurement ID
 
 ### Crisis Detection Patterns
 

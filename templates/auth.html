@@ -11,28 +11,44 @@
       import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
       import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
-      // Your web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyDTUMewKAz_tyT6L2Wap1isRAzhK1p61EM",
-        authDomain: "hervival-d40e1.firebaseapp.com",
-        projectId: "hervival-d40e1",
-        storageBucket: "hervival-d40e1.firebasestorage.app",
-        messagingSenderId: "943996741664",
-        appId: "1:943996741664:web:93134525196a42c4c17445",
-        measurementId: "G-R1EW8YG0PM"
-      };
+      // Fetch Firebase configuration from server
+      let app, analytics, auth;
+      
+      async function initializeFirebase() {
+        try {
+          const response = await fetch('/firebase-config');
+          const firebaseConfig = await response.json();
+          
+          // Initialize Firebase
+          app = initializeApp(firebaseConfig);
+          analytics = getAnalytics(app);
+          auth = getAuth(app);
+          
+          // Initialize the auth state listener after Firebase is initialized
+          initializeAuthState();
+        } catch (error) {
+          console.error('Error loading Firebase configuration:', error);
+        }
+      }
 
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-      const auth = getAuth(app);
+      function initializeAuthState() {
+        // Make auth functions globally available
+        window.auth = auth;
+        window.createUser = createUserWithEmailAndPassword;
+        window.signIn = signInWithEmailAndPassword;
+        window.resetPassword = sendPasswordResetEmail;
+        window.authStateChanged = onAuthStateChanged;
 
-      // Make auth functions globally available
-      window.auth = auth;
-      window.createUser = createUserWithEmailAndPassword;
-      window.signIn = signInWithEmailAndPassword;
-      window.resetPassword = sendPasswordResetEmail;
-      window.authStateChanged = onAuthStateChanged;
+        // Auth state observer
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                window.location.href = 'index.html';
+            }
+        });
+      }
+
+      // Initialize Firebase when the page loads
+      window.addEventListener('DOMContentLoaded', initializeFirebase);
     </script>
     <style>
         :root {
@@ -377,13 +393,6 @@
                 errorElement.textContent = error.message;
             }
         }
-
-        // Auth state observer
-        window.authStateChanged(window.auth, user => {
-            if (user) {
-                window.location.href = 'index.html';
-            }
-        });
     </script>
 </body>
 </html>
