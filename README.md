@@ -196,6 +196,22 @@ The system detects various crisis keywords and phrases:
 - **Privacy Protection**: Secure session management and data handling
 - **Error Handling**: Graceful degradation with supportive error messages
 
+## Security
+
+### API Key Protection
+
+- **Environment Variables**: All sensitive configuration (Firebase API keys, secrets) stored in `.env` file
+- **Secure Configuration Endpoint**: Firebase config served dynamically via `/firebase-config` route
+- **Git Security**: `.env` file excluded from version control via `.gitignore`
+- **Template Configuration**: `.env.example` provided for easy setup without exposing secrets
+
+### Best Practices
+
+- Never commit API keys or secrets to version control
+- Use environment variables for all sensitive configuration
+- Regularly rotate API keys and secrets
+- Monitor for any accidental exposure of credentials
+
 ## Contributing
 
 1. Fork the repository
