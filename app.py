@@ -115,6 +115,9 @@ def internal_error(error):
         "priority": "high"
     }), 500
 
+# For Vercel deployment
+application = app
+
 if __name__ == '__main__':
     logger.info("Starting HerVival support system...")
     app.run(debug=True, port=5001)
