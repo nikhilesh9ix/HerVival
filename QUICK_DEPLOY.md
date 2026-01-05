@@ -1,24 +1,8 @@
 # Quick Deploy to Vercel - HerVival
 
-## Quick Start (3 Steps)
+## Quick Start (2 Steps)
 
-### 1. Set Environment Variables in Vercel
-
-Go to [Vercel Dashboard](https://vercel.com/dashboard) → Your Project → Settings → Environment Variables
-
-Add these variables:
-```
-FLASK_SECRET_KEY=your-secret-key
-FIREBASE_API_KEY=your-api-key
-FIREBASE_AUTH_DOMAIN=your-domain.firebaseapp.com
-FIREBASE_PROJECT_ID=your-project-id
-FIREBASE_STORAGE_BUCKET=your-bucket.appspot.com
-FIREBASE_MESSAGING_SENDER_ID=your-sender-id
-FIREBASE_APP_ID=your-app-id
-FIREBASE_MEASUREMENT_ID=your-measurement-id
-```
-
-### 2. Deploy
+### 1. Deploy
 
 **Option A - Using PowerShell Script (Recommended)**
 ```powershell
@@ -40,7 +24,7 @@ vercel --prod
 3. Import your repository
 4. Vercel will deploy automatically
 
-### 3. Test Your App
+### 2. Test Your App
 
 Visit your deployment URL (e.g., `https://hervival.vercel.app`)
 
@@ -53,6 +37,8 @@ Visit your deployment URL (e.g., `https://hervival.vercel.app`)
 - ✅ Modified `app.py` - Added WSGI application variable
 
 ## Important Notes
+
+**Authentication Removed**: The app now runs without authentication. Anyone can access all pages directly.
 
 ### Why requirements.vercel.txt?
 

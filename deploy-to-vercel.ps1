@@ -36,43 +36,6 @@ if (Test-Path "requirements.vercel.txt") {
 }
 
 Write-Host ""
-Write-Host "======================================" -ForegroundColor Cyan
-Write-Host "  Important: Environment Variables" -ForegroundColor Cyan
-Write-Host "======================================" -ForegroundColor Cyan
-Write-Host ""
-Write-Host "Before deploying, make sure you have set the following" -ForegroundColor Yellow
-Write-Host "environment variables in your Vercel dashboard:" -ForegroundColor Yellow
-Write-Host ""
-Write-Host "  - FLASK_SECRET_KEY" -ForegroundColor White
-Write-Host "  - FIREBASE_API_KEY" -ForegroundColor White
-Write-Host "  - FIREBASE_AUTH_DOMAIN" -ForegroundColor White
-Write-Host "  - FIREBASE_PROJECT_ID" -ForegroundColor White
-Write-Host "  - FIREBASE_STORAGE_BUCKET" -ForegroundColor White
-Write-Host "  - FIREBASE_MESSAGING_SENDER_ID" -ForegroundColor White
-Write-Host "  - FIREBASE_APP_ID" -ForegroundColor White
-Write-Host "  - FIREBASE_MEASUREMENT_ID" -ForegroundColor White
-Write-Host ""
-
-$response = Read-Host "Have you set all environment variables in Vercel? (y/n)"
-
-if ($response -ne "y") {
-    Write-Host ""
-    Write-Host "Please set up your environment variables first:" -ForegroundColor Red
-    Write-Host "1. Go to https://vercel.com/dashboard" -ForegroundColor White
-    Write-Host "2. Select your project (or create a new one)" -ForegroundColor White
-    Write-Host "3. Go to Settings > Environment Variables" -ForegroundColor White
-    Write-Host "4. Add all required variables" -ForegroundColor White
-    Write-Host ""
-    Write-Host "Run this script again when ready." -ForegroundColor Yellow
-    
-    # Restore original requirements
-    if (Test-Path "requirements.backup.txt") {
-        Copy-Item "requirements.backup.txt" "requirements.txt" -Force
-    }
-    exit
-}
-
-Write-Host ""
 Write-Host "Starting deployment..." -ForegroundColor Green
 Write-Host ""
 
@@ -96,7 +59,7 @@ if (Test-Path "requirements.backup.txt") {
 Write-Host ""
 Write-Host "Next steps:" -ForegroundColor Yellow
 Write-Host "1. Test your deployed app at the URL shown above" -ForegroundColor White
-Write-Host "2. Update Firebase configuration to whitelist your Vercel domain" -ForegroundColor White
-Write-Host "3. Test authentication and all features" -ForegroundColor White
+Write-Host "2. Test chat and all features" -ForegroundColor White
+Write-Host "3. Note: Authentication has been removed - all pages are now public" -ForegroundColor White
 Write-Host ""
 Write-Host "For troubleshooting, check: https://vercel.com/docs" -ForegroundColor Cyan

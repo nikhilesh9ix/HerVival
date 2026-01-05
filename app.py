@@ -1,11 +1,9 @@
-from flask import Flask, render_template, request, jsonify, redirect, url_for, session
+from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 import logging
 import os
 from conversation_handler import ConversationHandler
-from datetime import datetime, timedelta
 from dotenv import load_dotenv
-import json
 
 # Load environment variables
 load_dotenv()
@@ -16,8 +14,6 @@ logger = logging.getLogger(__name__)
 
 # Initialize Flask app
 app = Flask(__name__, template_folder='templates', static_folder='static')
-app.secret_key = os.getenv('FLASK_SECRET_KEY', os.urandom(24))
-app.permanent_session_lifetime = timedelta(days=7)
 CORS(app)
 
 # Initialize conversation handler
@@ -25,15 +21,8 @@ conversation_handler = ConversationHandler()
 
 @app.route('/')
 def index():
-    """Render the main chat interface with personalized welcome."""
-    if 'user' not in session:
-        return redirect(url_for('login'))
+    """Render the main chat interface."""
     return render_template('index.html')
-
-@app.route('/login')
-def login():
-    """Render the login page."""
-    return render_template('auth.html')
 
 @app.route('/counselors')
 def counselors():
@@ -44,20 +33,6 @@ def counselors():
 def services():
     """Render the emergency services page."""
     return render_template('services.html')
-
-@app.route('/firebase-config')
-def firebase_config():
-    """Serve Firebase configuration securely."""
-    config = {
-        'apiKey': os.getenv('FIREBASE_API_KEY'),
-        'authDomain': os.getenv('FIREBASE_AUTH_DOMAIN'),
-        'projectId': os.getenv('FIREBASE_PROJECT_ID'),
-        'storageBucket': os.getenv('FIREBASE_STORAGE_BUCKET'),
-        'messagingSenderId': os.getenv('FIREBASE_MESSAGING_SENDER_ID'),
-        'appId': os.getenv('FIREBASE_APP_ID'),
-        'measurementId': os.getenv('FIREBASE_MEASUREMENT_ID')
-    }
-    return jsonify(config)
 
 @app.route('/chat', methods=['POST'])
 def chat():

@@ -3,7 +3,6 @@
 ## Prerequisites
 - A Vercel account (sign up at https://vercel.com)
 - Git repository (already set up)
-- Environment variables from your `.env` file
 
 ## Deployment Steps
 
@@ -12,23 +11,7 @@
 npm install -g vercel
 ```
 
-### 2. Configure Environment Variables
-Before deploying, you need to set up your environment variables in Vercel:
-
-1. Go to your Vercel dashboard
-2. Select your project (or it will be created on first deploy)
-3. Go to Settings → Environment Variables
-4. Add the following variables:
-   - `FLASK_SECRET_KEY`
-   - `FIREBASE_API_KEY`
-   - `FIREBASE_AUTH_DOMAIN`
-   - `FIREBASE_PROJECT_ID`
-   - `FIREBASE_STORAGE_BUCKET`
-   - `FIREBASE_MESSAGING_SENDER_ID`
-   - `FIREBASE_APP_ID`
-   - `FIREBASE_MEASUREMENT_ID`
-
-### 3. Deploy to Vercel
+### 2. Deploy to Vercel
 
 #### Option A: Deploy via Vercel Dashboard (Easiest)
 1. Go to https://vercel.com/new
@@ -51,10 +34,10 @@ vercel
 vercel --prod
 ```
 
-### 4. Post-Deployment
+### 3. Post-Deployment
 - Your app will be available at `https://your-project-name.vercel.app`
-- Update Firebase configuration to whitelist your Vercel domain
-- Test all features including authentication and chat functionality
+- Test all features including chat functionality
+- **Note**: Authentication has been removed, so all pages are now publicly accessible
 
 ## Important Notes
 
