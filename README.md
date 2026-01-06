@@ -65,7 +65,7 @@ To create a safe, accessible, and judgment-free space where women can seek emoti
 ## 🎬 Demo
 
 ### Live Application
-🌐 **Deployed URL**: [Coming Soon]
+🌐 **Deployed URL**: [https://her-vival.vercel.app/](https://her-vival.vercel.app/)
 
 ### Screenshots
 
