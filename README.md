@@ -9,26 +9,6 @@
 
 ---
 
-## 📖 Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Demo](#demo)
-- [Technology Stack](#technology-stack)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [API Documentation](#api-documentation)
-- [Deployment](#deployment)
-- [Security](#security)
-- [Contributing](#contributing)
-- [Roadmap](#roadmap)
-- [License](#license)
-- [Support & Resources](#support--resources)
-
----
-
 ## 🌟 Overview
 
 **HerVival** is an intelligent emotional support platform designed specifically to help women navigate emotional challenges, detect crisis situations, and access critical mental health resources. Using advanced natural language processing and pattern recognition, HerVival provides empathetic, context-aware responses while ensuring safety through real-time crisis detection.
@@ -304,43 +284,7 @@ Process user messages and generate empathetic responses.
 
 ---
 
-## 🚀 Deployment
-
-### Vercel Deployment (Recommended)
-
-```bash
-# Install Vercel CLI
-npm install -g vercel
-
-# Login to Vercel
-vercel login
-
-# Deploy
-vercel --prod
-```
-
-Or use the provided PowerShell script:
-```powershell
-.\deploy-to-vercel.ps1
-```
-
-### Manual Deployment
-
-1. **Configure** [vercel.json](vercel.json)
-2. **Set Environment Variables** on Vercel dashboard
-3. **Deploy** using Vercel CLI or GitHub integration
-
-For detailed instructions, see [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md)
-
-### Other Platforms
-
-- **Heroku**: Use `Procfile` (web: gunicorn app:app)
-- **Railway**: Connect GitHub repo directly
-- **AWS EC2**: Use systemd or PM2 for process management
-
----
-
-## 🔐 Security
+##  Security
 
 ### Best Practices Implemented
 
@@ -406,34 +350,7 @@ flake8 app.py conversation_handler.py crisis_support.py
 
 ---
 
-## 🗺️ Roadmap
-
-### ✅ Completed
-- [x] Core chat functionality
-- [x] Crisis detection system
-- [x] Resource directory
-- [x] Vercel deployment
-- [x] Responsive design
-
-### 🔄 In Progress
-- [ ] Firebase authentication integration
-- [ ] User session persistence
-- [ ] Enhanced emotion detection
-
-### 📅 Planned Features
-- [ ] Multi-language support (Hindi, Spanish, French)
-- [ ] Voice input/output
-- [ ] AI model fine-tuning for better empathy
-- [ ] Integration with professional counselor booking
-- [ ] Mobile application (React Native)
-- [ ] Community support forums
-- [ ] Journaling feature
-- [ ] Mood tracking analytics
-- [ ] WhatsApp/Telegram bot integration
-
----
-
-## 📄 License
+##  License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
